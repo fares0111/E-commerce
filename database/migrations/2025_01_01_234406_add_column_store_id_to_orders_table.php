@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('store_images', function (Blueprint $table) {
-            $table->id();
-            $table->string("path",255);
+        Schema::table('orders', function (Blueprint $table) {
+
             $table->unsignedBigInteger("store_id");
-            $table->timestamps();
 
             $table->foreign("store_id")
             ->references("id")
@@ -30,6 +28,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('store_images');
+        Schema::table('orders', function (Blueprint $table) {
+            //
+        });
     }
 };

@@ -27,7 +27,7 @@ class Send_Welcome_Message extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Send Welcome Message',
+            subject: ' Welcome Message',
         );
     }
 

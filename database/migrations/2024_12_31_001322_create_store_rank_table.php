@@ -21,7 +21,7 @@ return new class extends Migration
 
     $table->foreign("store_id")
         ->references("id")
-        ->on("sellers")
+        ->on("stores")
         ->onDelte("cascade")
         ->onUpdate("cascade");
 

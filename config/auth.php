@@ -44,6 +44,11 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+
+        'seller' => [
+            'driver' => 'session',
+            'provider' => 'sellers',
+        ],
     ],
 
     /*
@@ -65,13 +70,18 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Users\User::class,
         ],
 
-         'users' => [
-             'driver' => 'database',
-             'table' => App\Models\Admin::class,
+         'admins' => [
+             'driver' => 'eloquent',
+             'model' => App\Models\Admins\Admin::class,
          ],
+
+         'sellers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Sellers\Seller::class,
+        ],
     ],
 
     /*

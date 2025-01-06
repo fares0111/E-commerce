@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\User\Orders;
+namespace App\Http\Controllers\Seller\Products;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-return "hi";  
-  }
+        return "hi";
+
+            }
 
     /**
      * Show the form for creating a new resource.
@@ -23,7 +24,13 @@ return "hi";
         //
     }
 
-
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
 
     /**
      * Display the specified resource.
