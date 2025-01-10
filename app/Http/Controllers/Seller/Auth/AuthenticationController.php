@@ -5,10 +5,14 @@ namespace App\Http\Controllers\Seller\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Services\UploadImages;
+use App\Traits\Auth_Errors;
 
 class AuthenticationController extends Controller
 {
-  
+  use Auth_Errors;
+
+
     public function login(){
 
 
@@ -26,11 +30,18 @@ $Validation = $request->validate([
 
 ]);
 
-if(Auth::attempt($Validation)){
+if(Auth::guard('seller')->attempt($Validation)){
 
     $request->session()->regenerate();
 
     return redirect()->route('seller.dashboard');
+
+}else{
+
+   $notify = Auth_Errors::Login_error($request->email);
+
+
+   return back()->with('error_type',$notify);
 
 }
 

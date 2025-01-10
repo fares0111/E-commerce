@@ -5,8 +5,11 @@ use App\Http\Controllers\Seller\Products\ProductController;
 
 use App\Http\Controllers\Seller\Auth\RegisterSellerController;
 use App\Http\Controllers\Seller\Auth\AuthenticationController;
+use App\Http\Controllers\seller\ProfileController;
 
-use App\Http\Controllers\Seller\SellerController;
+
+Route::view('seller/dashboard','sellers.dashboard')->middleware('auth:seller')->name('seller.dashboard');
+
 
 Route::controller(RegisterSellerController::class)->prefix('auth/seller/')->name('auth.seller.')->group(function(){
 
@@ -21,11 +24,11 @@ Route::post('logout',[AuthenticationController::class,'destroy'])->name('logout'
 });
 
 
-Route::controller(SellerController::class)->middleware('auth:seller')->prefix('seller/')->name('seller.')->group(function(){
+Route::controller(ProfileController::class)->middleware('auth:seller')->prefix('seller/profile/')->name('seller.profile.')->group(function(){
+
+Route::get('/','index')->name('index');
 
 
-
-Route::view('dashboard','sellers.dashboard')->name('dashboard');
 
 });
 

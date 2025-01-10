@@ -14,7 +14,13 @@ class Seller extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_picture',
+        'address',
     ];
 
+    protected $casts = [
+
+'address' =>'array',
+    ];
 
 }

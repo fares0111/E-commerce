@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{{ asset('css/sellers/auth/register.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/sellers/auth/login.css') }}">
 
 </head>
 <body>
@@ -37,6 +37,13 @@
                  class="@error('title') is-invalid @enderror"
                  required>
             </div>
+
+
+            @if(session('error_type'))
+    <div style="color: red; text-align: right; font-weight: bold; margin: 10px 0;">
+        {{ session('error_type') }}
+    </div>
+@endif
 
             @error('password')
     <div class="alert alert-danger">{{ $message }}</div>

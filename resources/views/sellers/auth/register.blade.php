@@ -10,7 +10,7 @@
 <body>
 <div class="form-container">
         <h2> سجل الان و ابداء بعرض منتجاتك</h2>
-        <form action="{{route('auth.seller.insert')}}" method="POST">
+        <form action="{{route('auth.seller.insert')}}" method="POST" enctype="multipart/form-data">
 
         @csrf
             <div class="form-group">
@@ -21,7 +21,6 @@
                  class="@error('name') is-invalid @enderror"
                  required>
             </div>
-
             @error('name')
     <div class="alert alert-danger">{{ $message }}</div>
 @enderror 
@@ -63,6 +62,62 @@
             </div>
 
             @error('password_confirmation')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror
+
+
+
+            <div class="form-group">
+    <label for="address[country]">اختر الدولة</label>
+    <select id="address[country]"
+            name="address[country]"
+            class="@error('address.country') is-invalid @enderror"
+            required>
+        <option value="">اختر دولتك</option>
+        @foreach ($Countries as $Country)
+            <option value="{{ $Country->id }}">{{ $Country->name }}</option>
+        @endforeach
+    </select>
+</div>
+@error('address.country')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror
+
+<div class="form-group">
+    <label for="address[city]">المدينة</label>
+    <input type="text" id="address[city]"
+           name="address[city]"
+           placeholder="Cairo, Jeddah, Dubai ..."
+           class="@error('address.city') is-invalid @enderror"
+           required>
+</div>
+@error('address.city')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror
+
+<div class="form-group">
+    <label for="address[details]">تفاصيل العنوان</label>
+    <input type="text" id="address[details]"
+           name="address[details]"
+           placeholder="المنطقة، الشارع، رقم العقار"
+           class="@error('address.details') is-invalid @enderror"
+           required>
+</div>
+@error('address.details')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror
+
+
+<div class="form-group">
+                <label for="image"> صورة البروفايل </label>
+                <input type="file" id="image"
+                 name="image"
+                 placeholder="أعد إدخال كلمة المرور" 
+                 class="@error('image') is-invalid @enderror"
+                 >
+            </div>
+
+            @error('image')
     <div class="alert alert-danger">{{ $message }}</div>
 @enderror
 
