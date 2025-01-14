@@ -153,14 +153,14 @@
         alt="User Image" 
         />
         </div>
-        <h2>الاسم الكامل: فارس أحمد</h2>
+        <h2> {{$userName}} :: الاسم</h2>
     </div>
 
 
 
     <!-- Profile Form -->
     <div class="profile-content">
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="{{route('seller.profile.update')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <!-- Name -->
 
@@ -181,9 +181,17 @@
 
             <div class="form-group">
                 <label for="name">تعديل الاسم</label>
-                <input type="text" id="name" name="name" value="{{auth()->guard('seller')->user()->name}}">
+                <input type="text" id="name" name="name" value="{{$userName}}"
+                class="@error('name') is-invalid @enderror"
+                >
             </div>
 
+
+
+        </div>
+            @error('name')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror 
             <!-- Address -->
             <div class="form-group">
                 <label for="address"> (للتعديل تواصل مع الدعم الفني)الدولة</label>
@@ -192,26 +200,53 @@
 
             <div class="form-group">
                 <label for="address"> المدينة</label>
-                <input type="text" id="address" name="address" value="{{$sellerCity}}">
+                <input type="text" id="address" name="address[city]" value="{{$sellerCity}}"
+                class="@error('address[city]') is-invalid @enderror"
+                >
             </div>
+
+            
+
+            @error('address[city]')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror 
 
             <div class="form-group">
                 <label for="address"> تفاصيل العنوان</label>
-                <input type="text" id="address" name="address" value="{{$sellerDetails}}">
+                <input type="text" id="address" name="address[details]"  value="{{$sellerDetails}}"
+                class="@error('address[details]') is-invalid @enderror"
+                >
             </div>
+            @error('address[details]')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror 
 
 
 
             <!-- Password -->
             <div class="form-group">
                 <label for="password"> تغيير كلمة المرور </label>
-                <input type="password" id="password" name="password" placeholder="أدخل كلمة مرور جديدة">
+                <input type="password" id="password" name="password" placeholder="أدخل كلمة مرور جديدة"
+                class="@error('password') is-invalid @enderror"
+                >
             </div>
 
+            @error('password')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror 
+
+
             <div class="form-group">
-                <label for="password-confirm">تاكيد كلمة المرور  </label>
-                <input type="password" id="password-confirm" name="password-confirm" placeholder="أدخل كلمة مرور جديدة">
+                <label for="password_confirmation">تاكيد كلمة المرور  </label>
+                <input type="password" id="password_confirmation" name="password_confirmation" placeholder="أدخل كلمة مرور جديدة"
+                class="@error('password_confirmation') is-invalid @enderror"
+                >
             </div>
+
+            @error('password_confirmation')
+    <div class="alert alert-danger">{{ $message }}</div>
+@enderror 
+</div>
 
 
             <!-- Actions -->

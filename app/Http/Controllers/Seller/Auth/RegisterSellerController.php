@@ -2,22 +2,32 @@
 
 namespace App\Http\Controllers\Seller\Auth;
 
-use App\Models\Sellers\Seller;
+use App\Events\Mails\Send_Welcome_Message;
 use App\Http\Controllers\Controller;
+use App\Models\Sellers\Seller;
+use App\Services\FileServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use App\Events\Mails\Send_Welcome_Message;
-use App\Services\UploadImages;
+
 class RegisterSellerController extends Controller
 {
+
+    
+    public $Image = null;
+    public $Folder = 'seller_profile_picture';
+    public $Guard = 'seller';
+
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-return "i work";    
+        return response()->json(['message' => 'Account created successfully','data'=>'fares'], 201);
 
 }
 
@@ -27,7 +37,7 @@ return "i work";
     public function create()
     {
 
-      $Countries = \DB::table('countries')->get();
+      $Countries = DB::table('countries')->get();
         return view("sellers/auth/register",compact('Countries'));
     }
 
@@ -70,18 +80,24 @@ return "i work";
             
         ]);
 
-    
+        
+        event(new Send_Welcome_Message($seller->email));
+
+        auth()->guard($this->Guard)->login($seller);
+        
+
 if($request->hasFile('image')){
 
-  $imagePath =  UploadImages::User_Image($request->image);
+    $this->Image = $request->image;
+ 
+    $imagePath =  FileServices::User_Image($this->Image,$this->Folder,$this->Guard);
 
-    $seller->update(['profile_picture' => $imagePath ]);
+    //everything happens in User_Image add anything you want here
+
+
 };
 
 
-event(new Send_Welcome_Message($seller->email));
-
-        auth()->guard('seller')->login($seller);
 
 return to_route('seller.dashboard');
 

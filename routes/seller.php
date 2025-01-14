@@ -27,8 +27,8 @@ Route::post('logout',[AuthenticationController::class,'destroy'])->name('logout'
 Route::controller(ProfileController::class)->middleware('auth:seller')->prefix('seller/profile/')->name('seller.profile.')->group(function(){
 
 Route::get('/','index')->name('index');
-
-
+Route::post('update','update')->name('update');
+Route::get('destroy','destroy');
 
 });
 
