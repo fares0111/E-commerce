@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Seller;
+namespace App\Http\Controllers\Seller\Stories;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class StoriesController extends Controller
+class StoreController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+
+return 'ok';
     }
 
     /**
@@ -20,7 +21,8 @@ class StoriesController extends Controller
      */
     public function create()
     {
-        //
+return 'ok';
+
     }
 
     /**

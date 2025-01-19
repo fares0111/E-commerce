@@ -6,6 +6,7 @@ use App\Http\Controllers\Seller\Products\ProductController;
 use App\Http\Controllers\Seller\Auth\RegisterSellerController;
 use App\Http\Controllers\Seller\Auth\AuthenticationController;
 use App\Http\Controllers\seller\ProfileController;
+use App\Http\Controllers\Seller\Stories\StoreController;
 
 
 Route::view('seller/dashboard','sellers.dashboard')->middleware('auth:seller')->name('seller.dashboard');
@@ -33,4 +34,9 @@ Route::get('destroy','destroy');
 });
 
 
+Route::controller(StoreController::class)->middleware('auth:seller')->prefix('seller/store')->name('seller.store.')->group(function(){
+
+
+Route::get('create','create');
+});
 

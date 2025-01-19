@@ -3,15 +3,14 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use App\Services\FileServices;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-
-
 use App\Models\Sellers\Seller;
+use App\Services\FileServices;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules;
 
 class ProfileController extends Controller
 {
@@ -26,7 +25,9 @@ class ProfileController extends Controller
     public function index()
     {
 
-        $sellerCountry = \DB::table('countries')->where('id',Auth::guard($this->Guard)->user()->id)->first();
+        $sellerCountry = DB::table('countries')->where('id',Auth::guard($this->Guard)->user()->address['country'])->first();
+
+        
 
         $sellerCity = Auth::guard($this->Guard)->user()->address['city'];
 
@@ -34,7 +35,7 @@ class ProfileController extends Controller
 
         $userName = Auth::guard($this->Guard)->user()->name;
 
-        return view('sellers.profile.index',compact(
+        return view('sellers.profile',compact(
             
             'sellerCountry',
             'sellerCity',
@@ -87,8 +88,8 @@ class ProfileController extends Controller
 $request->validate([
     
     'password' => ['nullable','confirmed',Rules\Password::defaults()],
-    'address.city' => ['nullable'],
-    'address.details' => ['nullable'],
+    'address.city' => ['required','nullable'],
+    'address.details' => ['required','nullable'],
     'name' => ['nullable','min:4'],
 
 

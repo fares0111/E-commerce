@@ -12,6 +12,16 @@
 
 
         <li class="dropdown">
+            <a href="#" onclick="toggleDropdown(this)">المتاجر</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">انشاء متجر </a></li>
+                <li><a href="#"> متاجري </a></li>
+                <li><a href="#"> احصائيات المتاجر</a></li>
+            </ul>
+        </li>
+
+
+        <li class="dropdown">
             <a href="#" onclick="toggleDropdown(this)">الطلبات</a>
             <ul class="dropdown-menu">
                 <li><a href="#">طلب 1</a></li>
@@ -19,8 +29,8 @@
                 <li><a href="#">طلب 3</a></li>
             </ul>
         </li>
-
-
+                
+        
         <li class="dropdown">
             <a href="#" onclick="toggleDropdown(this)">العملاء</a>
             <ul class="dropdown-menu">
