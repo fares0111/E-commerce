@@ -47,6 +47,8 @@ class RegisterSellerController extends Controller
     public function store(Request $request)
     {
 
+
+
         $request->validate([
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string','email', 'max:120', 'unique:sellers'],
@@ -90,7 +92,7 @@ if($request->hasFile('image')){
 
     $this->Image = $request->image;
  
-    $imagePath =  FileServices::User_Image($this->Image,$this->Folder,$this->Guard);
+    $imagePath =  FileServices::Upload_Image($this->Image,$this->Folder,$this->Guard);
 
     //everything happens in User_Image add anything you want here
 

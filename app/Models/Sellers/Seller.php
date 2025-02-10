@@ -5,7 +5,7 @@ namespace App\Models\Sellers;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Stories\Store;
 class Seller extends Authenticatable
 {
     use HasFactory;
@@ -22,5 +22,13 @@ class Seller extends Authenticatable
 
 'address' =>'array',
     ];
+
+
+public function stories(){
+
+
+return $this->hasMany(Store::class);
+
+}
 
 }

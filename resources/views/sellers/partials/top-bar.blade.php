@@ -7,7 +7,7 @@
         <!-- القائمة المنسدلة -->
         <ul class="dropdown-menu">
             <h6 class='admin_mail'>{{auth()->guard('seller')->user()->email}}</h6>
-            <li><a href="#"> الملف الشخصي</a></li>
+            <li><a href="{{route('seller.profile.index')}}"> الملف الشخصي</a></li>
             <li><a href="#"></a></li>
             <li><a href="#"> </a></li>
         </ul>

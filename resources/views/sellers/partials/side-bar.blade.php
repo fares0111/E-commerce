@@ -14,8 +14,8 @@
         <li class="dropdown">
             <a href="#" onclick="toggleDropdown(this)">المتاجر</a>
             <ul class="dropdown-menu">
-                <li><a href="#">انشاء متجر </a></li>
-                <li><a href="#"> متاجري </a></li>
+                <li><a href="{{route('seller.store.create')}}">انشاء متجر </a></li>
+                <li><a href="{{route('seller.store.index')}}"> عرض المتاجر </a></li>
                 <li><a href="#"> احصائيات المتاجر</a></li>
             </ul>
         </li>

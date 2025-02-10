@@ -36,7 +36,12 @@ Route::get('destroy','destroy');
 
 Route::controller(StoreController::class)->middleware('auth:seller')->prefix('seller/store')->name('seller.store.')->group(function(){
 
+Route::get('index','index')->name('index');
+Route::get('create','create')->name('create');
+Route::post('create','store')->name('create.submit');
+Route::get('edit/{id}','edit')->name('edit');
+Route::post('update/{id}','update')->name('update');
+Route::get('delete/{id}','destroy')->name('delete');
 
-Route::get('create','create');
 });
 
